@@ -1,1 +1,0 @@
-https://json.geoiplookup.io/
