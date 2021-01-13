@@ -2,7 +2,6 @@
 <html>
 <head>
     <link rel="stylesheet" href="static/styles.css">
-    <script type="text/javascript" src="build.js"></script>
 </head>
 <body>
     <!-- <picture class="background">
@@ -16,14 +15,11 @@
             <source srcset="static/images/source/background.jpg.webp x1, static/images/source/background@2x.jpg.webp x2" type="image/webp">
             <img src="static/images/source/PhilHarry-8272-cropped.jpg">
         </picture>
-        <form>
-            <h1>The Bodies' EP Candidates</h1>
-            <label>Which songs did you listen to?</label><br>
-            <input type="checkbox" value="guns"> Guns
-            <input type="checkbox" value="persephone"> Oh Persephone
-            <input type="checkbox" value="labyrinth"> The Labyrinth
-            <input type="checkbox" value="luck"> Luck
-        </form>
+        <form netlify></form>
+        <script>
+            window.formNode = document.currentScript.previousElementSibling
+        </script>
     </form>
+    <script type="text/javascript" src="build.js"></script>
 </body>
 </html>
