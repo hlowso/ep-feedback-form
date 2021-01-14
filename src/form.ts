@@ -83,4 +83,4 @@ const Form:Component = {
 }
 
 // @ts-ignore
-m.mount(window.formNode, {view: () => m(Form)})
+// m.mount(window.formNode, {view: () => m(Form)})
