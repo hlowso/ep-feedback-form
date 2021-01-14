@@ -18,49 +18,57 @@ const state:State = {
 const Form:Component = {
     view: vnode => [
         m('h1', "The Bodies' EP Candidates"),
-        m('section',
+        m('section.listened-to',
             m('label', "Which songs did you listen to?"),
-            state.songs.map(s => [
-                m('input', {
-                    type:'checkbox',
-                    value: s.id,
-                    onchange: () => {
-                        const song = state.songs.find(song => song === s)!
-                        song.heard = !song.heard
-                    }
-                }),
-                s.name
-            ])
+            state.songs.map(s =>
+                m('.check',
+                    m('input', {
+                        name: 'heard',
+                        type:'checkbox',
+                        value: s.id,
+                        onchange: () => {
+                            const song = state.songs.find(song => song === s)!
+                            song.heard = !song.heard
+                        }
+                    }),
+                    s.name
+                ))
         ),
         m('section',
             m('label', "Which songs were any good?"),
-            state.songs.filter(s => s.heard).map(s => [
-                m('input', {
-                    type:'checkbox',
-                    value: s.id
-                }),
-                s.name
-            ])
+            state.songs.map(s =>
+                m('.check', {class: !s.heard ? 'disabled' : ''},
+                    m('input', {
+                        name: 'good',
+                        type: 'checkbox',
+                        value: s.id
+                    }),
+                    s.name
+                ))
         ),
         m('section',
             m('label', "Which song was your favourite?"),
-            m('select',
-                state.songs.filter(s => s.heard).map(s =>
-                    m('option', { value: s.id },
-                        s.name
-                    )
-                )
-            )
+            state.songs.map(s =>
+                m('.check', {class: !s.heard ? 'disabled' : ''},
+                    m('input', {
+                        name: 'best',
+                        type: 'radio',
+                        value: s.id
+                    }),
+                    s.name
+                ))
         ),
         m('section',
             m('label', "Which song was your least favourite?"),
-            m('select',
-                state.songs.filter(s => s.heard).map(s =>
-                    m('option', { value: s.id },
-                        s.name
-                    )
-                )
-            )
+            state.songs.map(s =>
+                m('.check', {class: !s.heard ? 'disabled' : ''},
+                    m('input', {
+                        name: 'worst',
+                        type: 'radio',
+                        value: s.id
+                    }),
+                    s.name
+                ))
         ),
         m('section',
             m('label', "Any other feedback would be hugely appreciated!"),
