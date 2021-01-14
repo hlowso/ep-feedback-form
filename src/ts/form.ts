@@ -25,7 +25,7 @@ const Form:Component = {
                 state.songs.map(s =>
                     m('.check',
                         m('input', {
-                            name: 'heard',
+                            name: 'heard[]',
                             type:'checkbox',
                             value: s.id,
                             onchange: () => {
@@ -41,7 +41,7 @@ const Form:Component = {
                 state.songs.map(s =>
                     m('.check', {class: !s.heard ? 'disabled' : ''},
                         m('input', {
-                            name: 'good',
+                            name: 'good[]',
                             type: 'checkbox',
                             value: s.id
                         }),

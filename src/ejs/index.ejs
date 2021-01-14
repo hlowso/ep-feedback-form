@@ -17,8 +17,8 @@
         </picture>
         <form name="feedback" netlify netlify-honeypot="bot-field" hidden>
             <% for (const song of locals) { %>
-                <input type="checkbox" name="heard" value="<%= song.id %>" />
-                <input type="checkbox" name="good" value="<%= song.id %>" />
+                <input type="checkbox" name="heard[]" value="<%= song.id %>" />
+                <input type="checkbox" name="good[]" value="<%= song.id %>" />
             <% } %>  
             <input type="radio" name="best" />
             <input type="radio" name="worst" />
