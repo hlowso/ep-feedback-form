@@ -1,9 +1,14 @@
 BROWSERIFY_OPTIONS := -p [ tsify --project tsconfig.json ]
 
-build.js: $(wildcard src/*)
-	browserify src/index.ts $(BROWSERIFY_OPTIONS) -o build.js
+build.js: src/songs.json $(wildcard src/ts/*)
+	browserify src/ts/index.ts $(BROWSERIFY_OPTIONS) -o build.js
+
+index.html: src/songs.json src/ejs/index.ejs
+	npx ejs src/ejs/index.ejs -f src/songs.json -o index.html
 
 watch:
 	watchify src/index.ts $(BROWSERIFY_OPTIONS) -o build.js -v
 
-.PHONY: watch
+build: build.js index.html
+
+.PHONY: watch build

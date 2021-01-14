@@ -1,5 +1,5 @@
 import m, {Component} from 'mithril'
-import songs from './songs.json'
+import songs from '../songs.json'
 
 type Song = {
     id: string

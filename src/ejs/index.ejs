@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="static/styles.css">
+</head>
+<body>
+    <!-- <picture class="background">
+        <source srcset="static/images/background.jpg x1, static/images/background@2x.jpg x2" type="image/jpeg">
+        <source srcset="static/images/background.jpg.webp x1, static/images/background@2x.jpg.webp x2" type="image/webp">
+        <img src="static/images/background.jpg">
+    </picture> -->
+    <div class="column">
+        <picture class="profile">
+            <source srcset="static/images/source/background.jpg x1, static/images/source/background@2x.jpg x2" type="image/jpeg">
+            <source srcset="static/images/source/background.jpg.webp x1, static/images/source/background@2x.jpg.webp x2" type="image/webp">
+            <img src="static/images/source/PhilHarry-8272-cropped.jpg">
+        </picture>
+        <form name="feedback" netlify netlify-honeypot="bot-field" hidden>
+            <% for (const song of locals) { %>
+                <input type="checkbox" name="heard" value="<%= song.id %>" />
+                <input type="checkbox" name="good" value="<%= song.id %>" />
+            <% } %>  
+            <input type="radio" name="best" />
+            <input type="radio" name="worst" />
+            <input type="email" name="email" />
+            <textarea name="comments"></textarea>
+        </form>
+        <div></div>
+        <script>
+            window.formNode = document.currentScript.previousElementSibling
+        </script>
+    </form>
+    <script type="text/javascript" src="build.js"></script>
+</body>
+</html>
