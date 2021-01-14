@@ -16,11 +16,12 @@
             <img src="static/images/source/PhilHarry-8272-cropped.jpg">
         </picture>
         <form name="feedback" method="POST" netlify>
+            <div></div>
+            <script>
+                window.formNode = document.currentScript.previousElementSibling
+            </script>
             <input type="submit" value="SEND">
         </form>
-        <script>
-            window.formNode = document.currentScript.previousElementSibling
-        </script>
     </form>
     <script type="text/javascript" src="build.js"></script>
 </body>
