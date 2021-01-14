@@ -77,8 +77,7 @@ const Form:Component = {
         m('section',
             m('label', "Send us your email if you'd like to subscribe to our newsletter."),
             m('input', {type: 'email', name: 'email'})
-        ),
-        m('input', {type: 'submit', value: 'Send'})
+        )
     ]
 }
 
