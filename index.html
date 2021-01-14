@@ -15,13 +15,18 @@
             <source srcset="static/images/source/background.jpg.webp x1, static/images/source/background@2x.jpg.webp x2" type="image/webp">
             <img src="static/images/source/PhilHarry-8272-cropped.jpg">
         </picture>
-        <form name="feedback" method="POST" netlify>
-            <div></div>
-            <script>
-                window.formNode = document.currentScript.previousElementSibling
-            </script>
-            <input type="submit" value="SEND">
+        <form name="feedback" netlify netlify-honeypot="bot-field" hidden>
+            <input type="checkbox" name="heard" />
+            <input type="checkbox" name="good" />
+            <input type="radio" name="best" />
+            <input type="radio" name="worst" />
+            <input type="email" name="email" />
+            <textarea name="feedback"></textarea>
         </form>
+        <div></div>
+        <script>
+            window.formNode = document.currentScript.previousElementSibling
+        </script>
     </form>
     <script type="text/javascript" src="build.js"></script>
 </body>
