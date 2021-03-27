@@ -19,7 +19,7 @@ const Form:Component = {
     view: vnode =>
         m('form', {name: 'feedback', method: 'POST', 'data-netlify': true},
             m('input', {type: 'hidden', name: 'form-name', value: 'feedback'}),
-            m('h1', "The Bodies' EP Candidates"),
+            m('h1', "The Fountain Dimes' EP Candidates"),
             m('section.listened-to',
                 m('label',  "Which songs did you listen to?"),
                 state.songs.map(s =>
