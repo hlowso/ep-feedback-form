@@ -24,6 +24,7 @@ const Form: Component = {
         state.songs
             ? m('form', {name: 'feedback', method: 'POST', 'data-netlify': true},
                 m('input', {type: 'hidden', name: 'form-name', value: 'feedback'}),
+                m('input', {type: 'hidden', name: 'pairing', value: JSON.stringify(state.songs ? state.songs.map(s => ({id: s.id, name: s.name})) : [])}),
                 m('h1', "Which song is better?"),
                 m('.songs',
                     [0, 1].map(i =>
