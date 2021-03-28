@@ -7,7 +7,7 @@ index.html: src/songs.json src/ejs/index.ejs
 	npx ejs src/ejs/index.ejs -f src/songs.json -o index.html
 
 watch:
-	watchify src/index.ts $(BROWSERIFY_OPTIONS) -o build.js -v
+	npx watchify src/ts/index.ts $(BROWSERIFY_OPTIONS) -o build.js -v
 
 build: build.js index.html
 

@@ -1,3 +1,7 @@
+<% const getIdx = (limit) => Math.floor(Math.random() * limit) %> 
+<% const idxs = [getIdx(locals.length), getIdx(locals.length - 1)] %>
+<% if (idxs[1] >= idxs[0]) { idxs[1] = (idxs[1] + 1) % locals.length } %> 
+<% const songs = [locals[idxs[0]], locals[idxs[1]]] %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,20 +20,16 @@
             <img src="static/images/source/PhilHarry-8272-cropped.jpg">
         </picture>
         <form name="feedback" netlify netlify-honeypot="bot-field" hidden>
-            <% for (const song of locals) { %>
-                <input type="checkbox" name="heard[]" value="<%= song.id %>" />
-                <input type="checkbox" name="good[]" value="<%= song.id %>" />
-            <% } %>  
-            <input type="radio" name="best" />
-            <input type="radio" name="worst" />
+            <input type="radio" name="preferred" />
+            <!-- <input type="radio" name="worst" />
             <input type="email" name="email" />
-            <textarea name="comments"></textarea>
+            <textarea name="comments"></textarea> -->
         </form>
         <div></div>
         <script>
             window.formNode = document.currentScript.previousElementSibling
         </script>
-    </form>
+    </div>
     <script type="text/javascript" src="build.js"></script>
 </body>
 </html>

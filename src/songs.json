@@ -1,58 +1,50 @@
 [
     {
-        "id": "persephone",
+        "id": 0,
         "name": "Oh Persephone"
     },
     {
-        "id": "luck",
+        "id": 1,
         "name": "Luck"
     },
     {
-        "id": "guns",
+        "id": 2,
         "name": "Guns"
     },
     {
-        "id": "moon",
-        "name": "Moon Ascension"
-    },
-    {
-        "id": "labyrinth",
+        "id": 3,
         "name": "The Labyrinth"
     },
     {
-        "id": "fierce",
-        "name": "Fierce Like You"
-    },
-    {
-        "id": "hurt",
+        "id": 4,
         "name": "Hurt Me To Get High"
     },
     {
-        "id": "off",
-        "name": "Off And Away"
-    },
-    {
-        "id": "blues",
+        "id": 5,
         "name": "Blues Of The Unromantic"
     },
     {
-        "id": "nancy",
+        "id": 6,
         "name": "Nancy Drew"
     },
     {
-        "id": "tired",
+        "id": 7,
         "name": "Tired Tense And Glum"
     },
     {
-        "id": "mother",
+        "id": 8,
         "name": "Mother's Day"
     },
     {
-        "id": "days",
+        "id": 9,
         "name": "Days Gone By"
     },
     {
-        "id": "only",
-        "name": "Only Rock And Roll"
+        "id": 10,
+        "name": "Arizona Can"
+    },
+    {
+        "id": 11,
+        "name": "Roll Into My Home"
     }
 ]

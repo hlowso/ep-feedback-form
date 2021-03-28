@@ -1,8 +1,14 @@
+:root {
+    --grey: rgb(242,242,242);
+    --border: solid 1px rgb(220,220,220);
+    --radius: 20px;
+}
+
 body {
     font-family: "Inter",-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif;
     margin: 0;
     background-image: linear-gradient(cornflowerblue, #FFB6C1);
-    color: #1a2228;
+    color: #222;
     height: 100vh;
 }
 
@@ -16,7 +22,7 @@ body {
 .column {
     display: flex;
     background-color: white;
-    width: 900px;
+    width: 1100px;
     position: relative;
     z-index: 1;
     margin: auto;
@@ -24,8 +30,13 @@ body {
 }
 
 .column h1 {
-    text-transform: uppercase;
     text-align: center;
+    font-weight: 300;
+    font-size: 40px;
+}
+
+.column > div {
+    margin: 20px auto;
 }
 
 .profile img {
@@ -37,44 +48,86 @@ body {
 form {
     overflow-y: scroll;
     height: 100%;
-}
-
-label {
-    font-size: 25px;
-    font-weight: bold;
-    margin: 0 0 5px 0;
-}
-
-section {
-    margin: 10px 20px;
-    display: flex;
-    flex-direction: column;
-}
-
-.disabled {
-    opacity: 0.3;
-    pointer-events: none;
-}
-
-.check {
-    margin: 1px 0;
+    background-color: white;
+    margin: 0 20px;
+    width: 700px;
+    margin: auto;
+    border: var(--border);
+    border-radius: var(--radius);
 }
 
 input[type="submit"] {
     margin: 20px auto;
     display: block;
-    width: 300px;
-    height: 40px;
-    font-size: x-large;
-    border-radius: 25px;
-    background: white;
-    text-transform: uppercase;
+    width: 220px;
 }
 
 input[type="submit"]:hover {
-    background-image: linear-gradient(cornflowerblue, #FFB6C1);
-    color: white;
     cursor: pointer;
+}
+
+.songs {
+    display: flex;
+    justify-content: space-around;
+}
+
+.card {
+    padding: 10px;
+    border: var(--border);
+    border-radius: var(--radius);
+    display: flex;
+    flex-direction: column;
+}
+
+.songs h2 {
+    font-weight: bold;
+    margin: 0 5px 10px;
+}
+
+audio {
+    outline: none;
+}
+
+.songs input[type="radio"] {
+    opacity: 0;
+    position: fixed;
+    width: 0;
+}
+
+.songs label {
+    margin: 10px 0 0;
+    width: 220px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.songs .card.selected {
+    border: solid 1px #222;
+}
+
+.songs .card.selected label {
+    background-color: #222;
+    color: white;
+    border: solid 1px #222;
+}
+
+.songs .card:not(.selected) label img {
+    opacity: 0;
+}
+
+.button {
+    cursor: pointer;
+    border: var(--border);
+    border-radius: 35px;
+    font-weight: 300;
+    padding: 10px;
+    background-color: white;
+    font-size: 25px;
+    color: #222;
+}
+
+.button:hover {
+    border: solid 1px #222;
 }
 
 @media only screen and (min-height: 800px) {

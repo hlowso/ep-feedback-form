@@ -1,88 +1,62 @@
+import {Song} from './types'
 import m, {Component} from 'mithril'
 import songs from '../songs.json'
+import { getPairing } from './random'
 
-type Song = {
-    id: string
-    name: string
-    heard?: boolean
+type State = { songs?: [Song, Song] }
+
+const history = JSON.parse(localStorage.getItem('history') || '[]')
+const pairing = getPairing(songs.length, history)
+const state: State = {
+    songs: pairing
+        ? [
+            songs.find(s => s.id === pairing[0])!,
+            songs.find(s => s.id === pairing[1])!]
+        : undefined
 }
 
-type State = {
-    songs: Song[]
-}
+const f = (i: number) => (i+1) % 2
 
-const state:State = {
-    songs: (songs as Song[]).map(s => ({...s, heard: false}))
-}
-
-const Form:Component = {
+const Form: Component = {
     view: vnode =>
-        m('form', {name: 'feedback', method: 'POST', 'data-netlify': true},
-            m('input', {type: 'hidden', name: 'form-name', value: 'feedback'}),
-            m('h1', "The Fountain Dimes' EP Candidates"),
-            m('section.listened-to',
-                m('label',  "Which songs did you listen to?"),
-                state.songs.map(s =>
-                    m('.check',
-                        m('input', {
-                            name: 'heard[]',
-                            type:'checkbox',
-                            value: s.id,
-                            onchange: () => {
-                                const song = state.songs.find(song => song === s)!
-                                song.heard = !song.heard
-                            }
-                        }),
-                        s.name
-                    ))
-            ),
-            m('section',
-                m('label', "Which songs were any good?"),
-                state.songs.map(s =>
-                    m('.check', {class: !s.heard ? 'disabled' : ''},
-                        m('input', {
-                            name: 'good[]',
-                            type: 'checkbox',
-                            value: s.id
-                        }),
-                        s.name
-                    ))
-            ),
-            m('section',
-                m('label', "Which song was your favourite?"),
-                state.songs.map(s =>
-                    m('.check', {class: !s.heard ? 'disabled' : ''},
-                        m('input', {
-                            name: 'best',
-                            type: 'radio',
-                            value: s.id
-                        }),
-                        s.name
-                    ))
-            ),
-            m('section',
-                m('label', "Which song was your least favourite?"),
-                state.songs.map(s =>
-                    m('.check', {class: !s.heard ? 'disabled' : ''},
-                        m('input', {
-                            name: 'worst',
-                            type: 'radio',
-                            value: s.id
-                        }),
-                        s.name
-                    ))
-            ),
-            m('section',
-                m('label', "Any other feedback would be hugely appreciated!"),
-                m('textarea', {name: 'comments'})
-            ),
-            m('section',
-                m('label', "Send us your email if you'd like to subscribe to our newsletter"),
-                m('input', {type: 'email', name: 'email'})
-            ),
-            m('input', {type: 'submit', value: 'SEND'})
-        )
+        state.songs
+            ? m('form', {name: 'feedback', method: 'POST', 'data-netlify': true},
+                m('input', {type: 'hidden', name: 'form-name', value: 'feedback'}),
+                m('h1', "Fountain Dimes EP"),
+                m('.songs',
+                    [0, 1].map(i =>
+                        m('.card', {class: state.songs![i].selected ? 'selected' : ''},
+                            m('h2', state.songs![i].name),
+                            m('audio', {
+                                id: `audio${i}`,
+                                controls: true,
+                                type: 'audio/mpeg',
+                                onplay: () => {
+                                    const other = document.querySelector(`#audio${f(i)}`) as HTMLAudioElement
+                                    other.pause()
+                                }},
+                                m('source', {src: `static/MP3/${state.songs![i].name.replace(/\s/g, '-')}.mp3`})
+                            ),
+                            m('label.button',
+                                m('input', {
+                                    type: 'radio', 
+                                    name: 'preferred', 
+                                    value: state.songs![i].id,
+                                    checked: state.songs![i].selected,
+                                    onchange: () => {
+                                        state.songs![f(i)].selected = false
+                                        state.songs![i].selected = true
+                                    }
+                                }),
+                                "This one's better",
+                                m('img', {src: 'static/images/done_white_24dp.svg'})
+                            )
+                        )
+                    )
+                ),
+                m('input.button', {type: 'submit', value: 'Send', onclick: () => alert('submitting!')})
+            )
+            : "Thanks for all the help!"
 }
 
-// @ts-ignore
 m.mount(window.formNode, {view: () => m(Form)})
