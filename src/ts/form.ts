@@ -2,6 +2,7 @@ import {Song} from './types'
 import m, {Component} from 'mithril'
 import songs from '../songs.json'
 import { getPairing } from './random'
+import classnames from 'classnames'
 
 type State = { songs?: [Song, Song] }
 
@@ -22,18 +23,21 @@ const Form: Component = {
         state.songs
             ? m('form', {name: 'feedback', method: 'POST', 'data-netlify': true},
                 m('input', {type: 'hidden', name: 'form-name', value: 'feedback'}),
-                m('h1', "Fountain Dimes EP"),
+                m('h1', "Which song is better???"),
                 m('.songs',
                     [0, 1].map(i =>
-                        m('.card', {class: state.songs![i].selected ? 'selected' : ''},
+                        m('.card', {class: classnames({selected: state.songs![i].selected, playing: state.songs![i].playing})},
                             m('h2', state.songs![i].name),
+                            m('span', 'playing'),
                             m('audio', {
                                 id: `audio${i}`,
                                 controls: true,
                                 type: 'audio/mpeg',
+                                onpause: () => state.songs![i].playing = false,
                                 onplay: () => {
                                     const other = document.querySelector(`#audio${f(i)}`) as HTMLAudioElement
                                     other.pause()
+                                    state.songs![i].playing = true
                                 }},
                                 m('source', {src: `static/MP3/${state.songs![i].name.replace(/\s/g, '-')}.mp3`})
                             ),

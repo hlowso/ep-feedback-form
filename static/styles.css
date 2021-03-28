@@ -54,6 +54,7 @@ form {
     margin: auto;
     border: var(--border);
     border-radius: var(--radius);
+    padding: 0 20px;
 }
 
 input[type="submit"] {
@@ -77,7 +78,7 @@ input[type="submit"]:disabled {
 }
 
 .card {
-    padding: 10px;
+    padding: 15px;
     border: var(--border);
     border-radius: var(--radius);
     display: flex;
@@ -100,7 +101,7 @@ audio {
 }
 
 .songs label {
-    margin: 10px 0 0;
+    margin: 30px auto 0;
     width: 220px;
     display: flex;
     justify-content: space-around;
@@ -118,6 +119,18 @@ audio {
 
 .songs .card:not(.selected) label img {
     opacity: 0;
+}
+
+.songs .card > span {
+    font-style: italic;
+    font-size: small;
+    font-weight: 100;
+    opacity: 0;
+    margin: -5px 0 10px 5px;
+}
+
+.songs .card.playing > span {
+    opacity: 1;
 }
 
 .button {
