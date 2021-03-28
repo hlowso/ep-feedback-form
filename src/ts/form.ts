@@ -54,7 +54,16 @@ const Form: Component = {
                         )
                     )
                 ),
-                m('input.button', {type: 'submit', value: 'Send', onclick: () => alert('submitting!')})
+                m('input.button', {
+                    type: 'submit',
+                    value: 'Send',
+                    disabled: !state.songs![0].selected && !state.songs![1].selected,
+                    onclick: () => {
+                        const entry = [state.songs![0].id, state.songs![1].id]
+                        history.push(entry.sort().reverse())
+                        localStorage.setItem('history', JSON.stringify(history))
+                    }
+                })
             )
             : "Thanks for all the help!"
 }

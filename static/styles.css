@@ -66,6 +66,11 @@ input[type="submit"]:hover {
     cursor: pointer;
 }
 
+input[type="submit"]:disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
 .songs {
     display: flex;
     justify-content: space-around;
