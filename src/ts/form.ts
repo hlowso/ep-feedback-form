@@ -24,7 +24,7 @@ const Form: Component = {
         state.songs
             ? m('form', {name: 'feedback', method: 'POST', 'data-netlify': true},
                 m('input', {type: 'hidden', name: 'form-name', value: 'feedback'}),
-                m('h1', "Which song is better???"),
+                m('h1', "Which song is better?"),
                 m('.songs',
                     [0, 1].map(i =>
                         m('.card', {class: classnames({selected: state.songs![i].selected, playing: state.songs![i].playing})},
@@ -68,30 +68,17 @@ const Form: Component = {
                         m('span', "This section is optional"),
                         m('.question',
                             m('span', "What about the songs needs improvement? Check all that apply"),
-                            m('label',
-                                m('input', {type: 'checkbox', name: 'improvement', value: 'vocals'}),
-                                'Vocals'
-                            ),
-                            m('label',
-                                m('input', {type: 'checkbox', name: 'improvement', value: 'lyrics'}),
-                                'Lyrics'
-                            ),
-                            m('label',
-                                m('input', {type: 'checkbox', name: 'improvement', value: 'melody'}),
-                                'Melody'
-                            ),
-                            m('label',
-                                m('input', {type: 'checkbox', name: 'improvement', value: 'harmony'}),
-                                'Chords / Harmony'
-                            ),
-                            m('label',
-                                m('input', {type: 'checkbox', name: 'improvement', value: 'rhythm'}),
-                                'Rhythm'
-                            ),
-                            m('label',
-                                m('input', {type: 'checkbox', name: 'improvement', value: 'sound'}),
-                                'Sound Quality'
-                            ),
+                            [['vocals', 'Vocals'],
+                             ['lyrics', 'Lyrics'],
+                             ['melody', 'Melody'],
+                             ['harmony', 'Chords / Harmony'],
+                             ['rhythm', 'Rhythm'],
+                             ['sound', 'Sound Quality']].map(area =>
+                                m('label',
+                                    m('input', {type: 'checkbox', name: 'improve[]', value: area[0]}),
+                                    area[1]
+                                )
+                            )
                         ),
                         m('.question',
                             m('span', "Any other comments?"),

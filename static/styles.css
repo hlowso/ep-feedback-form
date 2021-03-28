@@ -179,6 +179,11 @@ audio {
     transform: translateY(-12px);
 }
 
+.details label {
+    cursor: pointer;
+    margin: 0 0 5px;
+}
+
 .question {
     display: flex;
     flex-direction: column;
