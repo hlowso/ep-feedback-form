@@ -1,4 +1,4 @@
-BROWSERIFY_OPTIONS := -p [ tsify --project tsconfig.json ]
+BROWSERIFY_OPTIONS := -p [ tsify --project tsconfig.json ] -t [ babelify --global --presets [ @babel/preset-env ] ]
 
 build.js: src/songs.json $(wildcard src/ts/*)
 	npx browserify src/ts/index.ts $(BROWSERIFY_OPTIONS) -o build.js

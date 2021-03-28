@@ -4,7 +4,7 @@ import songs from '../songs.json'
 import { getPairing } from './random'
 import classnames from 'classnames'
 
-type State = { songs?: [Song, Song] }
+type State = { songs?: [Song, Song], details: boolean }
 
 const history = JSON.parse(localStorage.getItem('history') || '[]')
 const pairing = getPairing(songs.length, history)
@@ -13,10 +13,11 @@ const state: State = {
         ? [
             songs.find(s => s.id === pairing[0])!,
             songs.find(s => s.id === pairing[1])!]
-        : undefined
+        : undefined,
+    details: false
 }
 
-const f = (i: number) => (i+1) % 2
+const flip = (i: number) => (i+1) % 2
 
 const Form: Component = {
     view: vnode =>
@@ -35,7 +36,7 @@ const Form: Component = {
                                 type: 'audio/mpeg',
                                 onpause: () => state.songs![i].playing = false,
                                 onplay: () => {
-                                    const other = document.querySelector(`#audio${f(i)}`) as HTMLAudioElement
+                                    const other = document.querySelector(`#audio${flip(i)}`) as HTMLAudioElement
                                     other.pause()
                                     state.songs![i].playing = true
                                 }},
@@ -48,7 +49,7 @@ const Form: Component = {
                                     value: state.songs![i].id,
                                     checked: state.songs![i].selected,
                                     onchange: () => {
-                                        state.songs![f(i)].selected = false
+                                        state.songs![flip(i)].selected = false
                                         state.songs![i].selected = true
                                     }
                                 }),
@@ -58,6 +59,49 @@ const Form: Component = {
                         )
                     )
                 ),
+                !state.details
+                    ? m('span', { onclick: () => state.details = true },
+                        "More thoughts?"
+                    )
+                    : m('.details', {class: 'card'},
+                        m('h2', 'Additional Thoughts'),
+                        m('span', "This section is optional"),
+                        m('.question',
+                            m('span', "What about the songs needs improvement? Check all that apply"),
+                            m('label',
+                                m('input', {type: 'checkbox', name: 'improvement', value: 'vocals'}),
+                                'Vocals'
+                            ),
+                            m('label',
+                                m('input', {type: 'checkbox', name: 'improvement', value: 'lyrics'}),
+                                'Lyrics'
+                            ),
+                            m('label',
+                                m('input', {type: 'checkbox', name: 'improvement', value: 'melody'}),
+                                'Melody'
+                            ),
+                            m('label',
+                                m('input', {type: 'checkbox', name: 'improvement', value: 'harmony'}),
+                                'Chords / Harmony'
+                            ),
+                            m('label',
+                                m('input', {type: 'checkbox', name: 'improvement', value: 'rhythm'}),
+                                'Rhythm'
+                            ),
+                            m('label',
+                                m('input', {type: 'checkbox', name: 'improvement', value: 'sound'}),
+                                'Sound Quality'
+                            ),
+                        ),
+                        m('.question',
+                            m('span', "Any other comments?"),
+                            m('textarea', {name: 'comments', rows: 8})
+                        ),
+                        m('.question',
+                            m('span', "Send us your email address if you'd like to hear more about our EP"),
+                            m('input', {type: 'email', name: 'email', placeholder: 'your.email@example.com'})
+                        )
+                    ),
                 m('input.button', {
                     type: 'submit',
                     value: 'Send',
