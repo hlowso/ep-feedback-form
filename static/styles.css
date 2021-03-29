@@ -35,6 +35,7 @@ body {
     text-align: center;
     font-weight: 300;
     font-size: 40px;
+    margin-top: 0px;
 }
 
 .column > div {
@@ -52,9 +53,6 @@ form {
     background-color: white;
     width: 700px;
     margin: 20px auto;
-    border: var(--border);
-    border-radius: var(--radius);
-    padding: 0 25px;
 }
 
 form > span {
@@ -96,6 +94,10 @@ input[type="submit"]:disabled {
     padding: 20px;
     border: var(--border);
     border-radius: var(--radius);
+}
+
+.songs .card,
+.details.card {
     display: flex;
     flex-direction: column;
 }
@@ -108,16 +110,17 @@ input[type="submit"]:disabled {
 audio {
     outline: none;
     margin: 0 0 0 -5px;
+    width: 280px;
 }
 
-.songs input[type="radio"] {
+label input[type="radio"] {
     opacity: 0;
     position: fixed;
     width: 0;
 }
 
 .songs label {
-    margin: 30px auto 0;
+    margin: 20px auto 0;
     width: 220px;
     display: flex;
     justify-content: space-around;
@@ -127,13 +130,15 @@ audio {
     border: solid 1px #222;
 }
 
-.songs .card.selected label {
+.songs .card.selected label,
+label.equal.selected {
     background-color: #222;
     color: white;
     border: solid 1px #222;
 }
 
-.songs .card:not(.selected) label img {
+.songs .card:not(.selected) label img,
+label.equal:not(.selected) img {
     opacity: 0;
 }
 
@@ -147,6 +152,13 @@ audio {
 
 .songs .card.playing > span {
     opacity: 1;
+}
+
+label.equal {
+    display: flex;
+    justify-content: space-around;
+    width: 290px;
+    margin: 20px auto 0;
 }
 
 .button {

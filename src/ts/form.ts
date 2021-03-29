@@ -4,7 +4,7 @@ import songs from '../songs.json'
 import { getPairing } from './random'
 import classnames from 'classnames'
 
-type State = { songs?: [Song, Song], details: boolean }
+type State = { songs?: [Song, Song], details: boolean, selected?: number }
 
 const history = JSON.parse(localStorage.getItem('history') || '[]')
 const pairing = getPairing(songs.length, history)
@@ -14,6 +14,7 @@ const state: State = {
             songs.find(s => s.id === pairing[0])!,
             songs.find(s => s.id === pairing[1])!]
         : undefined,
+    selected: undefined,
     details: false
 }
 
@@ -25,40 +26,52 @@ const Form: Component = {
             ? m('form', {name: 'feedback', method: 'POST', 'data-netlify': true},
                 m('input', {type: 'hidden', name: 'form-name', value: 'feedback'}),
                 m('input', {type: 'hidden', name: 'pairing', value: JSON.stringify(state.songs ? state.songs.map(s => ({id: s.id, name: s.name})) : [])}),
-                m('h1', "Which song is better?"),
-                m('.songs',
-                    [0, 1].map(i =>
-                        m('.card', {class: classnames({selected: state.songs![i].selected, playing: state.songs![i].playing})},
-                            m('h2', state.songs![i].name),
-                            m('span', 'playing'),
-                            m('audio', {
-                                id: `audio${i}`,
-                                controls: true,
-                                type: 'audio/mpeg',
-                                onpause: () => state.songs![i].playing = false,
-                                onplay: () => {
-                                    const other = document.querySelector(`#audio${flip(i)}`) as HTMLAudioElement
-                                    other.pause()
-                                    state.songs![i].playing = true
-                                }},
-                                m('source', {src: `static/MP3/${state.songs![i].name.replace(/\s/g, '-')}.mp3`})
-                            ),
-                            m('label.button',
-                                m('input', {
-                                    type: 'radio', 
-                                    name: 'preferred', 
-                                    value: state.songs![i].id,
-                                    checked: state.songs![i].selected,
-                                    onchange: () => {
-                                        state.songs![flip(i)].selected = false
-                                        state.songs![i].selected = true
-                                    }
-                                }),
-                                "This one's better",
-                                m('img', {src: 'static/images/done_white_24dp.svg'})
+                m('.card',
+                    m('h1', "Which song is better?"),
+                    m('.songs',
+                        [0, 1].map(i =>
+                            m('.card', {class: classnames({selected: state.selected === i, playing: state.songs![i].playing})},
+                                m('h2', state.songs![i].name),
+                                m('span', 'playing'),
+                                m('audio', {
+                                    id: `audio${i}`,
+                                    controls: true,
+                                    type: 'audio/mpeg',
+                                    onpause: () => state.songs![i].playing = false,
+                                    onplay: () => {
+                                        const other = document.querySelector(`#audio${flip(i)}`) as HTMLAudioElement
+                                        other.pause()
+                                        state.songs![i].playing = true
+                                    }},
+                                    m('source', {src: `static/MP3/${state.songs![i].name.replace(/\s/g, '-')}.mp3`})
+                                ),
+                                m('label.button',
+                                    m('input', {
+                                        type: 'radio', 
+                                        name: 'preferred', 
+                                        value: state.songs![i].id,
+                                        checked: state.selected === i,
+                                        onchange: () => {
+                                            state.selected = i
+                                        }
+                                    }),
+                                    "This one's better",
+                                    m('img', {src: 'static/images/done_white_24dp.svg'})
+                                )
                             )
-                        )
-                    )
+                        ),
+                    ),
+                    m('label.button', {class: classnames('equal', {selected: state.selected === -1})},
+                        m('input', {
+                            type: 'radio', 
+                            name: 'preferred', 
+                            value: -1,
+                            checked: state.selected === -1,
+                            onchange: () => state.selected = -1
+                        }),
+                        "They're about the same",
+                        m('img', {src: 'static/images/done_white_24dp.svg'})
+                    ),
                 ),
                 !state.details
                     ? m('span', { onclick: () => state.details = true },
@@ -93,7 +106,7 @@ const Form: Component = {
                 m('input.button', {
                     type: 'submit',
                     value: 'Send',
-                    disabled: !state.songs![0].selected && !state.songs![1].selected,
+                    disabled: state.selected === undefined,
                     onclick: () => {
                         const entry = [state.songs![0].id, state.songs![1].id]
                         history.push(entry.sort().reverse())
