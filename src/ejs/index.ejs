@@ -1,18 +1,9 @@
-<% const getIdx = (limit) => Math.floor(Math.random() * limit) %> 
-<% const idxs = [getIdx(locals.length), getIdx(locals.length - 1)] %>
-<% if (idxs[1] >= idxs[0]) { idxs[1] = (idxs[1] + 1) % locals.length } %> 
-<% const songs = [locals[idxs[0]], locals[idxs[1]]] %> 
 <!DOCTYPE html>
 <html>
 <head>
     <link rel="stylesheet" href="static/styles.css">
 </head>
 <body>
-    <!-- <picture class="background">
-        <source srcset="static/images/background.jpg x1, static/images/background@2x.jpg x2" type="image/jpeg">
-        <source srcset="static/images/background.jpg.webp x1, static/images/background@2x.jpg.webp x2" type="image/webp">
-        <img src="static/images/background.jpg">
-    </picture> -->
     <div class="column">
         <picture class="profile">
             <source srcset="static/images/source/background.jpg x1, static/images/source/background@2x.jpg x2" type="image/jpeg">
@@ -22,7 +13,7 @@
         <form name="feedback" netlify netlify-honeypot="bot-field" hidden>
             <input type="hidden" name="pairing" />
             <input type="radio" name="preferred" />
-            <input type="checkbox" name="improve[]" />
+            <input type="hidden" name="improve" />
             <textarea name="comments"></textarea>
             <input type="email" name="email" />
         </form>

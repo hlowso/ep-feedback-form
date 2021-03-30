@@ -4,7 +4,7 @@ import songs from '../songs.json'
 import { getPairing } from './random'
 import classnames from 'classnames'
 
-type State = { songs?: [Song, Song], details: boolean, selected?: number }
+type State = { songs?: [Song, Song], details: boolean, selected?: number, improve: string[] }
 
 const history = JSON.parse(localStorage.getItem('history') || '[]')
 const pairing = getPairing(songs.length, history)
@@ -15,7 +15,8 @@ const state: State = {
             songs.find(s => s.id === pairing[1])!]
         : undefined,
     selected: undefined,
-    details: false
+    details: false,
+    improve: []
 }
 
 const flip = (i: number) => (i+1) % 2
@@ -25,7 +26,7 @@ const Form: Component = {
         state.songs
             ? m('form', {name: 'feedback', method: 'POST', 'data-netlify': true},
                 m('input', {type: 'hidden', name: 'form-name', value: 'feedback'}),
-                m('input', {type: 'hidden', name: 'pairing', value: JSON.stringify(state.songs ? state.songs.map(s => ({id: s.id, name: s.name})) : [])}),
+                m('input', {type: 'hidden', name: 'pairing', value: state.songs.map(s => s.id).join('-') }),
                 m('.card',
                     m('h1', "Which song is better?"),
                     m('.songs',
@@ -80,6 +81,7 @@ const Form: Component = {
                     : m('.details', {class: 'card'},
                         m('h2', 'Additional Thoughts'),
                         m('span', "This section is optional"),
+                        m('input', {type: 'hidden', name: 'improve', value: state.improve.join('-')}),
                         m('.question',
                             m('span', "What about the songs needs improvement? Check all that apply"),
                             [['vocals', 'Vocals'],
@@ -89,7 +91,15 @@ const Form: Component = {
                              ['rhythm', 'Rhythm'],
                              ['sound', 'Sound Quality']].map(area =>
                                 m('label',
-                                    m('input', {type: 'checkbox', name: 'improve[]', value: area[0]}),
+                                    m('input', {
+                                        type: 'checkbox',
+                                        onchange: e => {
+                                            if (e.target.checked)
+                                                state.improve.push(area[0])
+                                            else
+                                                state.improve = state.improve.filter(a => a !== area[0])
+                                        }
+                                    }),
                                     area[1]
                                 )
                             )

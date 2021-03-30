@@ -11,4 +11,7 @@ watch:
 
 build: build.js index.html
 
+rank:
+	@ts-node src/index.ts
+
 .PHONY: watch build
