@@ -259,23 +259,28 @@ input[type="submit"] {
     }
     .column {
         width: 100%;
-        display: block;
+        display: flex;
     }
-    .column .profile {
-        display: none;
+    .profile img {
+        max-width: 29vw;
     }
-    .column .mobile {
-        display: unset;
+    .column > div:not(.img-container) {
+        max-width: 71vw;
     }
-    .column .mobile img {
-        width: 100%;
-        transform: scale(2);
-        margin-top: 14px;
+    form {
+        max-width: 97%;
     }
-    .img-container {
-        overflow: hidden;
-        border-bottom: solid 2px #222;
-        height: 200px;
+    audio {
+        max-width: 100%;
+    }
+    .button {
+        max-width: 97%;
+    }
+    .songs .card:first-child {
+        margin-right: 10px;
+    }
+    .songs .card {
+        max-width: 42%;
     }
 }
 
@@ -286,9 +291,13 @@ input[type="submit"] {
     form {
         margin-top: 0;
         max-width: 100%;
-        margin-bottom: 50px;
         padding-bottom: 20px;
-        border-bottom: solid 2px #222;
+    }
+    .column {
+        display: block;
+    }
+    .column .profile {
+        display: none;
     }
     form .songs {
         display: flex;
@@ -299,28 +308,44 @@ input[type="submit"] {
     }
     .songs .card:first-child {
         margin-bottom: 20px;
-    }
-    form > .card {
-        border-radius: unset;
-        border-left: none;
-        border-right: none;
+        margin-right: unset;
     }
     form > span {
         background-color: var(--grey);
         border-radius: var(--radius);
         margin-left: 15px;
     }
-    audio {
-        max-width: 100%;
-    }
     .button {
-        max-width: 97%;
         font-size: 21px;
     }
-    .img-container {
-        height: 115px;
+    .songs .card {
+        max-width: unset;
     }
     .songs .card h2 {
         font-size: 20px;
+    }
+    .column > div:not(.img-container) {
+        max-width: unset;
+    }
+}
+
+@media only screen and (max-width: 440px) {
+    form > .card {
+        border-radius: unset;
+        border-left: none;
+        border-right: none;
+    }
+    .column .mobile img {
+        width: 100%;
+        transform: scale(2);
+        margin-top: 14px;
+    }
+    .img-container {
+        overflow: hidden;
+        border-bottom: solid 2px #222;
+        height: 115px;
+    }
+    .column .mobile {
+        display: unset;
     }
 }
