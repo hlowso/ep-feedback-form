@@ -14,4 +14,7 @@ build: build.js index.html
 rank:
 	@ts-node src/index.ts
 
-.PHONY: watch build
+test:
+	@ts-node ./test.ts
+
+.PHONY: watch build rank test

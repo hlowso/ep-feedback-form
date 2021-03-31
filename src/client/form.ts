@@ -1,4 +1,4 @@
-import {Song} from './types'
+import {Song} from '../types'
 import m, {Component} from 'mithril'
 import songs from '../songs.json'
 import { getPairing } from './random'

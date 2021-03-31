@@ -1,50 +1,62 @@
 [
     {
         "id": 0,
-        "name": "Oh Persephone"
+        "name": "Oh Persephone",
+        "score": 1500
     },
     {
         "id": 1,
-        "name": "Luck"
+        "name": "Luck",
+        "score": 1500
     },
     {
         "id": 2,
-        "name": "Guns"
+        "name": "Guns",
+        "score": 1500
     },
     {
         "id": 3,
-        "name": "The Labyrinth"
+        "name": "The Labyrinth",
+        "score": 1500
     },
     {
         "id": 4,
-        "name": "Hurt Me To Get High"
+        "name": "Hurt Me To Get High",
+        "score": 1500
     },
     {
         "id": 5,
-        "name": "Blues Of The Unromantic"
+        "name": "Blues Of The Unromantic",
+        "score": 1500
     },
     {
         "id": 6,
-        "name": "Nancy Drew"
+        "name": "Nancy Drew",
+        "score": 1500
     },
     {
         "id": 7,
-        "name": "Tired Tense And Glum"
+        "name": "Tired Tense And Glum",
+        "score": 1500
     },
     {
         "id": 8,
-        "name": "Mother's Day"
+        "name": "Mother's Day",
+        "score": 1500
     },
     {
         "id": 9,
-        "name": "Days Gone By"
+        "name": "Days Gone By",
+        "score": 1500
     },
     {
         "id": 10,
-        "name": "Arizona Can"
+        "name": "Arizona Can",
+        "score": 1500
     },
     {
         "id": 11,
-        "name": "Roll Into My Home"
+        "name": "Roll Into My Home",
+        "score": 1500
     }
 ]
