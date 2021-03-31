@@ -9,8 +9,9 @@
 body {
     font-family: var(--fonts);
     margin: 0;
-    background-image: linear-gradient(cornflowerblue, #FFB6C1);
     color: #222;
+    height: 100vh;
+    background-image: linear-gradient(cornflowerblue, #FFB6C1);
     height: 100vh;
 }
 
@@ -38,14 +39,17 @@ body {
     margin-top: 0px;
 }
 
-.column > div {
+.column > div:not(.img-container) {
     margin: 0 auto;
     overflow-y: scroll;
 }
 
-.profile img {
+picture img {
     -webkit-filter: grayscale(100%);
     filter: grayscale(100%);
+}
+
+.profile img {
     height: 100vh;
 }
 
@@ -171,6 +175,13 @@ label.equal {
     font-size: 25px;
     color: white;
     outline: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .button:hover {
@@ -224,6 +235,10 @@ label.equal {
     resize: none;
 }
 
+.column .mobile {
+    display: none;
+}
+
 @media only screen and (min-height: 800px) {
     .column {
         position: absolute;
@@ -236,5 +251,77 @@ label.equal {
     .profile img {
         border-bottom-left-radius: 25px;
         border-top-left-radius: 25px;
+    }
+}
+
+@media only screen and (max-width: 1100px) {
+    body {
+        background-image: unset;
+    }
+    .column {
+        width: 100%;
+        display: block;
+    }
+    .column .profile {
+        display: none;
+    }
+    .column .mobile {
+        display: unset;
+    }
+    .column .mobile img {
+        width: 100%;
+        transform: scale(2);
+        margin-top: 14px;
+    }
+    .img-container {
+        overflow: hidden;
+        border-bottom: solid 2px #222;
+        height: 200px;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    body {
+        height: unset;
+    }
+    form {
+        margin-top: 0;
+        max-width: 100%;
+        margin-bottom: 50px;
+        padding-bottom: 20px;
+        border-bottom: solid 2px #222;
+    }
+    form .songs {
+        display: flex;
+        flex-direction: column;
+    }
+    .column h1 {
+        font-size: 30px;
+    }
+    .songs .card:first-child {
+        margin-bottom: 20px;
+    }
+    form > .card {
+        border-radius: unset;
+        border-left: none;
+        border-right: none;
+    }
+    form > span {
+        background-color: var(--grey);
+        border-radius: var(--radius);
+        margin-left: 15px;
+    }
+    audio {
+        max-width: 100%;
+    }
+    .button {
+        max-width: 97%;
+        font-size: 21px;
+    }
+    .img-container {
+        height: 115px;
+    }
+    .songs .card h2 {
+        font-size: 20px;
     }
 }
