@@ -1,5 +1,5 @@
 <%- include('src/ejs/partials/_header.ejs') %> 
-<form name="feedback" netlify netlify-honeypot="bot-field" hidden action="/thank-you.html">
+<form name="feedback" netlify netlify-honeypot="bot-field" hidden action="/index.html#thank-you">
     <input type="hidden" name="pairing" />
     <input type="radio" name="preferred" />
     <input type="hidden" name="improve" />
@@ -10,4 +10,11 @@
 <script>
     window.formNode = document.currentScript.previousElementSibling
 </script>
+<div id="#thank-you">
+    <div>
+        <a href="#">✕</a>
+        <h1>THANK YOU</h1>
+        <p>Thanks so much for giving us your feedback! Every time you press send, we'll prepare another two songs for you to compare if you're interested. Check out our <a href="https://soundcloud.com/user184343356/sets/the-songs-of-phil-and-harry?fbclid=IwAR2OlvPIUrUOxOKvhUWj0DGdgfAYI548iFbzpyiyfTZsT2IrzY0pFzwS_Tk">soundcloud page</a> to see the full list of our demos.</p>
+    </div>
+</div>
 <%- include('src/ejs/partials/_footer.ejs') %> 

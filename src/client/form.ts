@@ -6,6 +6,7 @@ import classnames from 'classnames'
 
 type State = { songs?: [Song, Song], details: boolean, selected?: number, improve: string[] }
 
+const visit = localStorage.getItem('visit')
 const history = JSON.parse(localStorage.getItem('history') || '[]')
 const pairing = getPairing(songs.length, history)
 const state: State = {
@@ -24,7 +25,7 @@ const flip = (i: number) => (i+1) % 2
 const Form: Component = {
     view: vnode =>
         state.songs
-            ? m('form', {name: 'feedback', method: 'POST', 'data-netlify': true, action: '/thank-you.html'},
+            ? m('form', {name: 'feedback', method: 'POST', 'data-netlify': true, action: '/index.html'},
                 m('input', {type: 'hidden', name: 'form-name', value: 'feedback'}),
                 m('input', {type: 'hidden', name: 'pairing', value: state.songs.map(s => s.id).join('-') }),
                 m('.card',
@@ -125,6 +126,18 @@ const Form: Component = {
                 })
             )
             : "Thanks for all the help!"
+}
+
+switch (visit) {
+    case undefined:
+        localStorage.setItem('visit', 'second')
+        break
+    case 'second':
+        localStorage.setItem('visit', 'third')
+        location.href = "#thank-you"
+        break
+    default:
+        break
 }
 
 m.mount(window.formNode, {view: () => m(Form)})
