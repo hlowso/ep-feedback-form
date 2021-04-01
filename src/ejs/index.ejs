@@ -1,35 +1,13 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' >
-    <link rel="stylesheet" href="static/styles.css">
-</head>
-<body>
-    <div class="column">
-        <picture class="profile">
-            <source srcset="static/images/source/PhilHarry-8272-cropped.jpg x1" type="image/jpeg">
-            <source srcset="static/images/cropped.jpg.webp x1" type="image/webp">
-            <img src="static/images/source/PhilHarry-8272-cropped.jpg">
-        </picture>
-        <div class="img-container">
-            <picture class="mobile">
-                <source srcset="static/images/source/PhilHarry-7816.jpg x1" type="image/jpeg">
-                <source srcset="static/images/cropped-mobile.jpg.webp x1" type="image/webp">
-                <img src="static/images/source/PhilHarry-7816.jpg">
-            </picture>
-        </div>
-        <form name="feedback" netlify netlify-honeypot="bot-field" hidden>
-            <input type="hidden" name="pairing" />
-            <input type="radio" name="preferred" />
-            <input type="hidden" name="improve" />
-            <textarea name="comments"></textarea>
-            <input type="email" name="email" />
-        </form>
-        <div></div>
-        <script>
-            window.formNode = document.currentScript.previousElementSibling
-        </script>
-    </div>
-    <script type="text/javascript" src="build.js"></script>
-</body>
-</html>
+<%- include('src/ejs/partials/_header.ejs') %> 
+<form name="feedback" netlify netlify-honeypot="bot-field" hidden>
+    <input type="hidden" name="pairing" />
+    <input type="radio" name="preferred" />
+    <input type="hidden" name="improve" />
+    <textarea name="comments"></textarea>
+    <input type="email" name="email" />
+</form>
+<div></div>
+<script>
+    window.formNode = document.currentScript.previousElementSibling
+</script>
+<%- include('src/ejs/partials/_footer.ejs') %> 

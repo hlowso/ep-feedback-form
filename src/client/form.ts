@@ -24,7 +24,7 @@ const flip = (i: number) => (i+1) % 2
 const Form: Component = {
     view: vnode =>
         state.songs
-            ? m('form', {name: 'feedback', method: 'POST', 'data-netlify': true},
+            ? m('form', {name: 'feedback', method: 'POST', 'data-netlify': true, action: '/thank-you.html'},
                 m('input', {type: 'hidden', name: 'form-name', value: 'feedback'}),
                 m('input', {type: 'hidden', name: 'pairing', value: state.songs.map(s => s.id).join('-') }),
                 m('.card',
