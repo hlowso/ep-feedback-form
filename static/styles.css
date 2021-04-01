@@ -392,8 +392,6 @@ input[type="submit"] {
     }
     .column .mobile img {
         width: 100%;
-        transform: scale(2);
-        margin-top: 14px;
     }
     .img-container {
         overflow: hidden;
@@ -402,5 +400,9 @@ input[type="submit"] {
     }
     .column .mobile {
         display: unset;
+    }
+    #thank-you > div:last-child {
+        width: 75%;
+        padding: 20px 20px;
     }
 }
