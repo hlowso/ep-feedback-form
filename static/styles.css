@@ -25,7 +25,7 @@ body {
     height: 100vh;
 }
 
-.column h1 {
+h1 {
     text-align: center;
     font-weight: 300;
     font-size: 40px;
@@ -240,32 +240,56 @@ input[type="submit"] {
 
 #thank-you {
     display: none;
-    position: fixed;
-    width: 100vw;
-    height: 100vh;
-    background-color: #222;
-    opacity: 0.4;
-}
-
-#thank-you > div {
-    position: relative;
-    width: 80%;
-    max-width: 600px;
-    height: 500px;
-    border-radius: var(--radius);
-}
-
-#thank-you > div a {
-    position: absolute;
-    right: 20px;
-}
-
-#thank-you > div p {
-    margin: auto;
 }
 
 #thank-you:target {
     display: block;
+}
+
+#thank-you a:visited {
+    color: white;
+}
+
+#thank-you > div:first-child {
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    opacity: 0.9;
+    z-index: 100;
+    cursor: pointer;
+}
+
+#thank-you > div:last-child {
+    position: absolute;
+    width: 80%;
+    max-width: 500px;
+    border: solid 2px var(--grey);
+    border-radius: var(--radius);
+    background-color: transparent;
+    z-index: 200;
+    left: 50%;
+    top: 40%;
+    transform: translate(-50%, -40%);
+    padding: 20px 40px;
+    color: var(--grey);
+}
+
+#thank-you > div:last-child > a {
+    position: absolute;
+    right: 20px;
+    text-decoration: none;
+}
+
+#thank-you > div:last-child h1 {
+    text-align: center;
+}
+
+#thank-you > div:last-child p {
+    margin: auto;
+    font-weight: 300;
+    font-size: 25px;
 }
 
 @media only screen and (min-height: 800px) {

@@ -1,20 +1,43 @@
-<%- include('src/ejs/partials/_header.ejs') %> 
-<form name="feedback" netlify netlify-honeypot="bot-field" hidden action="/index.html#thank-you">
-    <input type="hidden" name="pairing" />
-    <input type="radio" name="preferred" />
-    <input type="hidden" name="improve" />
-    <textarea name="comments"></textarea>
-    <input type="email" name="email" />
-</form>
-<div></div>
-<script>
-    window.formNode = document.currentScript.previousElementSibling
-</script>
-<div id="#thank-you">
-    <div>
-        <a href="#">✕</a>
-        <h1>THANK YOU</h1>
-        <p>Thanks so much for giving us your feedback! Every time you press send, we'll prepare another two songs for you to compare if you're interested. Check out our <a href="https://soundcloud.com/user184343356/sets/the-songs-of-phil-and-harry?fbclid=IwAR2OlvPIUrUOxOKvhUWj0DGdgfAYI548iFbzpyiyfTZsT2IrzY0pFzwS_Tk">soundcloud page</a> to see the full list of our demos.</p>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' >
+    <link rel="stylesheet" href="static/styles.css">
+</head>
+<body>
+    <div class="column">
+        <picture class="profile">
+            <source srcset="static/images/source/PhilHarry-8272-cropped.jpg x1" type="image/jpeg">
+            <source srcset="static/images/cropped.jpg.webp x1" type="image/webp">
+            <img src="static/images/source/PhilHarry-8272-cropped.jpg">
+        </picture>
+        <div class="img-container">
+            <picture class="mobile">
+                <source srcset="static/images/source/PhilHarry-7816.jpg x1" type="image/jpeg">
+                <source srcset="static/images/cropped-mobile.jpg.webp x1" type="image/webp">
+                <img src="static/images/source/PhilHarry-7816.jpg">
+            </picture>
+        </div>
+        <form name="feedback" netlify netlify-honeypot="bot-field" hidden action="/index.html">
+            <input type="hidden" name="pairing" />
+            <input type="radio" name="preferred" />
+            <input type="hidden" name="improve" />
+            <textarea name="comments"></textarea>
+            <input type="email" name="email" />
+        </form>
+        <div></div>
+        <script>
+            window.formNode = document.currentScript.previousElementSibling
+        </script>
     </div>
-</div>
-<%- include('src/ejs/partials/_footer.ejs') %> 
+    <script type="text/javascript" src="build.js"></script>
+    <div id="thank-you">
+        <div onclick="window.location.href='#'"></div>
+        <div>
+            <a href="#">✕</a>
+            <h1>THANK YOU!</h1>
+            <p>Thanks so much for giving us your feedback! Every time you press send, we'll prepare another two songs for you to compare if you're interested. Check out our <a href="https://soundcloud.com/user184343356/sets/the-songs-of-phil-and-harry?fbclid=IwAR2OlvPIUrUOxOKvhUWj0DGdgfAYI548iFbzpyiyfTZsT2IrzY0pFzwS_Tk" target="_blank">soundcloud page</a> to see the full list of our demos.</p>
+        </div>
+    </div>
+</body>
+</html>

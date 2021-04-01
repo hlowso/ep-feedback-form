@@ -6,7 +6,6 @@ import classnames from 'classnames'
 
 type State = { songs?: [Song, Song], details: boolean, selected?: number, improve: string[] }
 
-const visit = localStorage.getItem('visit')
 const history = JSON.parse(localStorage.getItem('history') || '[]')
 const pairing = getPairing(songs.length, history)
 const state: State = {
@@ -21,6 +20,9 @@ const state: State = {
 }
 
 const flip = (i: number) => (i+1) % 2
+
+if (history.length === 1)
+    location.href = "#thank-you"
 
 const Form: Component = {
     view: vnode =>
@@ -126,18 +128,6 @@ const Form: Component = {
                 })
             )
             : "Thanks for all the help!"
-}
-
-switch (visit) {
-    case undefined:
-        localStorage.setItem('visit', 'second')
-        break
-    case 'second':
-        localStorage.setItem('visit', 'third')
-        location.href = "#thank-you"
-        break
-    default:
-        break
 }
 
 m.mount(window.formNode, {view: () => m(Form)})
