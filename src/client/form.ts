@@ -126,19 +126,15 @@ const Form: Component = {
                         )
                     ),
                 m('button.g-recaptcha', {
+                    class: classnames('button', {disabled: state.selected === undefined}),
                     'data-sitekey': '6LcU75gaAAAAAE6Rj2k8Av_tp7JxHeFtQ7l0ZiTL',
-                    'data-callback': () => state.human = true
-                }),
-                m('input.button', {
-                    type: 'submit',
-                    value: 'Send',
-                    disabled: !state.human || state.selected === undefined,
-                    onclick: () => {
+                    'data-callback': () => {
                         const entry = [state.songs![0].id, state.songs![1].id]
                         history.push(entry.sort((a, b)=>b-a))
                         localStorage.setItem('history', JSON.stringify(history))
-                    }
-                })
+                    }},
+                    'Send'
+                )
             )
             : "Thanks for all the help!"
 }

@@ -71,21 +71,6 @@ form > span:hover {
     border-radius: var(--radius);
 }
 
-input[type="submit"] {
-    margin: 20px auto;
-    display: block;
-    width: 220px;
-}
-
-input[type="submit"]:hover {
-    cursor: pointer;
-}
-
-input[type="submit"]:disabled {
-    opacity: 0.5;
-    pointer-events: none;
-}
-
 .songs {
     display: flex;
     justify-content: space-between;
@@ -295,6 +280,17 @@ input[type="submit"] {
     font-weight: 300;
     font-size: 21px;
     letter-spacing: 1px;
+}
+
+button.g-recaptcha {
+    margin: 20px auto;
+    display: block;
+    width: 220px;
+}
+
+button.g-recaptcha.disabled {
+    opacity: 0.5;
+    pointer-events: none;
 }
 
 @media only screen and (min-height: 800px) {
