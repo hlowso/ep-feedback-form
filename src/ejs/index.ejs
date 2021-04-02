@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <title>EP Feedback</title>
     <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' >
     <link rel="stylesheet" href="static/styles.css">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <body>
     <div class="column">
@@ -23,7 +25,6 @@
             <input type="hidden" name="improve" />
             <textarea name="comments"></textarea>
             <input type="email" name="email" />
-            <div data-netlify-recaptcha="true"></div>
         </form>
         <div></div>
         <script>

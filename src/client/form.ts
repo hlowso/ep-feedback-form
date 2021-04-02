@@ -5,10 +5,11 @@ import { getPairing } from '../random'
 import classnames from 'classnames'
 
 type State = {
-    songs?: [Song, Song],
-    details: boolean,
-    selected?: number,
+    songs?: [Song, Song]
+    details: boolean
+    selected?: number
     improve: string[]
+    human: boolean
 }
 
 const history = JSON.parse(localStorage.getItem('history') || '[]')
@@ -20,7 +21,8 @@ const state: State = {
         : undefined,
     selected: undefined,
     details: false,
-    improve: []
+    improve: [],
+    human: false
 }
 
 const flip = (i: number) => (i+1) % 2
@@ -123,11 +125,14 @@ const Form: Component = {
                             m('input', {type: 'email', name: 'email', placeholder: 'your.email@example.com'})
                         )
                     ),
-                m('div', {'data-netlify-recaptcha': true}),
+                m('button.g-recaptcha', {
+                    'data-sitekey': '6LcU75gaAAAAAE6Rj2k8Av_tp7JxHeFtQ7l0ZiTL',
+                    'data-callback': () => state.human = true
+                }),
                 m('input.button', {
                     type: 'submit',
                     value: 'Send',
-                    disabled: state.selected === undefined,
+                    disabled: !state.human || state.selected === undefined,
                     onclick: () => {
                         const entry = [state.songs![0].id, state.songs![1].id]
                         history.push(entry.sort((a, b)=>b-a))
