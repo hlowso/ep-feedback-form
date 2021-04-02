@@ -130,7 +130,7 @@ const Form: Component = {
                     ),
                 m('.g-recaptcha', {
                     'data-sitekey': '6LfL-pgaAAAAANdaJujC9gyaXSblxD_ojs4f5thv',
-                    'data-callback': human
+                    'data-callback': 'human'
                 }),
                 m('input.button', {
                     type: 'submit',
