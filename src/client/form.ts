@@ -28,7 +28,6 @@ const state: State = {
 const flip = (i: number) => (i+1) % 2
 
 const human = () => {
-    console.log('HUMAN AFTER ALL!')
     state.human = true
     m.redraw()
 }
@@ -148,7 +147,7 @@ const Form: Component = {
                     }
                 })
             )
-            : "Thanks for all the help!"
+            : m('h1', "Thanks for all the help!")
 }
 
 m.mount(window.formNode, {view: () => m(Form)})
