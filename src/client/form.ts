@@ -27,7 +27,12 @@ const state: State = {
 
 const flip = (i: number) => (i+1) % 2
 
-const human = () => state.human = true
+const human = () => {
+    console.log('HUMAN AFTER ALL!')
+    state.human = true
+    m.redraw()
+}
+
 window.human = human
 
 if (history.length === 1) {
