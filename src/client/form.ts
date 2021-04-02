@@ -27,15 +27,6 @@ const state: State = {
 
 const flip = (i: number) => (i+1) % 2
 
-const onSubmit = () => {
-    const entry = [state.songs![0].id, state.songs![1].id]
-    history.push(entry.sort((a, b)=>b-a))
-    localStorage.setItem('history', JSON.stringify(history));
-    (document.getElementById('feedback-form') as HTMLFormElement).submit()
-}
-
-window.onSubmit = onSubmit
-
 if (history.length === 1) {
     location.href = "#thank-you"
     window.scrollTo(0, 0)
@@ -134,13 +125,17 @@ const Form: Component = {
                             m('input', {type: 'email', name: 'email', placeholder: 'your.email@example.com'})
                         )
                     ),
-                m('button.g-recaptcha', {
-                    class: classnames('button', {disabled: state.selected === undefined}),
-                    'data-sitekey': '6LfL-pgaAAAAANdaJujC9gyaXSblxD_ojs4f5thv',
-                    'data-callback': 'onSubmit'
-                    },
-                    'Send'
-                )
+                m('.g-recaptcha', {'data-sitekey': '6LfL-pgaAAAAANdaJujC9gyaXSblxD_ojs4f5thv'}),
+                m('input.button', {
+                    type: 'submit',
+                    value: 'Send',
+                    disabled: state.selected === undefined,
+                    onclick: () => {
+                        const entry = [state.songs![0].id, state.songs![1].id]
+                        history.push(entry.sort((a, b)=>b-a))
+                        localStorage.setItem('history', JSON.stringify(history))
+                    }
+                })
             )
             : "Thanks for all the help!"
 }

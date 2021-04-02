@@ -282,13 +282,17 @@ input[type="submit"] {
     letter-spacing: 1px;
 }
 
-button.g-recaptcha {
+input[type="submit"] {
     margin: 20px auto;
     display: block;
     width: 220px;
 }
 
-button.g-recaptcha.disabled {
+input[type="submit"]:hover {
+    cursor: pointer;
+}
+
+input[type="submit"]:disabled {
     opacity: 0.5;
     pointer-events: none;
 }
