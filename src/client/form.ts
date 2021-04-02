@@ -136,7 +136,7 @@ const Form: Component = {
                     ),
                 m('button.g-recaptcha', {
                     class: classnames('button', {disabled: state.selected === undefined}),
-                    'data-sitekey': '6LcU75gaAAAAAE6Rj2k8Av_tp7JxHeFtQ7l0ZiTL',
+                    'data-sitekey': '6LfL-pgaAAAAANdaJujC9gyaXSblxD_ojs4f5thv',
                     'data-callback': 'onSubmit'
                     },
                     'Send'
