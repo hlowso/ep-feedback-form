@@ -1,7 +1,7 @@
 declare global {
     interface Window {
         formNode: HTMLDivElement
-        onSubmit: () => void
+        human: () => void
     }
 }
 
