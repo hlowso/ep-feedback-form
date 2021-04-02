@@ -88,6 +88,10 @@ form > span:hover {
     flex-direction: column;
 }
 
+.details {
+    margin-bottom: 20px;
+}
+
 .songs h2 {
     font-weight: bold;
     margin: 0 0 10px;
@@ -295,6 +299,11 @@ input[type="submit"]:hover {
 input[type="submit"]:disabled {
     opacity: 0.5;
     pointer-events: none;
+}
+
+.g-recaptcha {
+    width: fit-content;
+    margin: auto;
 }
 
 @media only screen and (min-height: 800px) {
