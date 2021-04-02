@@ -8,7 +8,7 @@ export type Song = {
     id: number
     name: string
     playing?: boolean
-    score?: number
+    score: number
 }
 
 export type Result = {

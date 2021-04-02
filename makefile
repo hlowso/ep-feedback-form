@@ -9,7 +9,7 @@ index.html: src/songs.json src/ejs/index.ejs
 watch:
 	npx watchify src/client/index.ts $(BROWSERIFY_OPTIONS) -o build.js -v
 
-build: build.js index.html thank-you.html
+build: build.js index.html
 
 rank:
 	@ts-node src/index.ts

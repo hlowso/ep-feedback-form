@@ -1,18 +1,22 @@
 import {Song} from '../types'
 import m, {Component} from 'mithril'
 import songs from '../songs.json'
-import { getPairing } from './random'
+import { getPairing } from '../random'
 import classnames from 'classnames'
 
-type State = { songs?: [Song, Song], details: boolean, selected?: number, improve: string[] }
+type State = {
+    songs?: [Song, Song],
+    details: boolean,
+    selected?: number,
+    improve: string[]
+}
 
 const history = JSON.parse(localStorage.getItem('history') || '[]')
-const pairing = getPairing(songs.length, history)
+const pairing = getPairing(songs, history)
+
 const state: State = {
     songs: pairing
-        ? [
-            songs.find(s => s.id === pairing[0])!,
-            songs.find(s => s.id === pairing[1])!]
+        ? pairing.map(id => songs.find(s => s.id === id)!) as [Song, Song]
         : undefined,
     selected: undefined,
     details: false,
@@ -124,7 +128,7 @@ const Form: Component = {
                     disabled: state.selected === undefined,
                     onclick: () => {
                         const entry = [state.songs![0].id, state.songs![1].id]
-                        history.push(entry.sort().reverse())
+                        history.push(entry.sort((a, b)=>b-a))
                         localStorage.setItem('history', JSON.stringify(history))
                     }
                 })
