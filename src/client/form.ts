@@ -28,8 +28,8 @@ const state: State = {
 const flip = (i: number) => (i+1) % 2
 
 if (history.length === 1) {
-    location.href = "#thank-you"
     window.scrollTo(0, 0)
+    location.href = "#thank-you"
 }
 
 const Form: Component = {
