@@ -33,7 +33,7 @@ if (history.length === 1) {
 const Form: Component = {
     view: vnode =>
         state.songs
-            ? m('form', {name: 'feedback', method: 'POST', 'data-netlify': true, action: '/index.html'},
+            ? m('form', {name: 'feedback', method: 'POST', 'data-netlify': true, action: '/index.html', 'data-netlify-recaptcha': true},
                 m('input', {type: 'hidden', name: 'form-name', value: 'feedback'}),
                 m('input', {type: 'hidden', name: 'pairing', value: state.songs.map(s => s.id).join('-') }),
                 m('.card',
@@ -122,6 +122,7 @@ const Form: Component = {
                             m('input', {type: 'email', name: 'email', placeholder: 'your.email@example.com'})
                         )
                     ),
+                m('div', {'data-netlify-recaptcha': true}),
                 m('input.button', {
                     type: 'submit',
                     value: 'Send',
