@@ -33,8 +33,9 @@ if (history.length === 1) {
 const Form: Component = {
     view: vnode =>
         state.songs
-            ? m('form', {name: 'feedback', method: 'POST', 'data-netlify': true, action: '/index.html', 'data-netlify-recaptcha': true},
+            ? m('form', {name: 'feedback', method: 'POST', 'data-netlify': true, action: '/index.html', 'netlify-honeypot': 'pot', 'data-netlify-recaptcha': true},
                 m('input', {type: 'hidden', name: 'form-name', value: 'feedback'}),
+                m('input', {name: 'pot'}),
                 m('input', {type: 'hidden', name: 'pairing', value: state.songs.map(s => s.id).join('-') }),
                 m('.card',
                     m('h1', "Which song is better?"),

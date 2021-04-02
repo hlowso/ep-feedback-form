@@ -52,6 +52,10 @@ form {
     margin: 20px auto;
 }
 
+input[name="pot"] {
+    visibility: hidden;
+}
+
 form > span {
     display: block;
     margin: 10px 0;
