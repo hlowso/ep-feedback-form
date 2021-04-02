@@ -27,6 +27,15 @@ const state: State = {
 
 const flip = (i: number) => (i+1) % 2
 
+const onSubmit = () => {
+    const entry = [state.songs![0].id, state.songs![1].id]
+    history.push(entry.sort((a, b)=>b-a))
+    localStorage.setItem('history', JSON.stringify(history));
+    (document.getElementById('feedback-form') as HTMLFormElement).submit()
+}
+
+window.onSubmit = onSubmit
+
 if (history.length === 1) {
     location.href = "#thank-you"
     window.scrollTo(0, 0)
@@ -35,7 +44,7 @@ if (history.length === 1) {
 const Form: Component = {
     view: vnode =>
         state.songs
-            ? m('form', {name: 'feedback', method: 'POST', 'data-netlify': true, action: '/index.html', 'netlify-honeypot': 'pot', 'data-netlify-recaptcha': true},
+            ? m('form#feedback-form', {name: 'feedback', method: 'POST', 'data-netlify': true, action: '/index.html', 'netlify-honeypot': 'pot', 'data-netlify-recaptcha': true},
                 m('input', {type: 'hidden', name: 'form-name', value: 'feedback'}),
                 m('input', {name: 'pot'}),
                 m('input', {type: 'hidden', name: 'pairing', value: state.songs.map(s => s.id).join('-') }),
@@ -128,11 +137,8 @@ const Form: Component = {
                 m('button.g-recaptcha', {
                     class: classnames('button', {disabled: state.selected === undefined}),
                     'data-sitekey': '6LcU75gaAAAAAE6Rj2k8Av_tp7JxHeFtQ7l0ZiTL',
-                    'data-callback': () => {
-                        const entry = [state.songs![0].id, state.songs![1].id]
-                        history.push(entry.sort((a, b)=>b-a))
-                        localStorage.setItem('history', JSON.stringify(history))
-                    }},
+                    'data-callback': 'onSubmit'
+                    },
                     'Send'
                 )
             )
