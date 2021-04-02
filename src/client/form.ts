@@ -34,10 +34,8 @@ const human = () => {
 
 window.human = human
 
-if (history.length === 1) {
-    window.scrollTo(0, 0)
+if (history.length === 1)
     location.href = "#thank-you"
-}
 
 const Form: Component = {
     view: vnode =>
@@ -71,9 +69,7 @@ const Form: Component = {
                                         name: 'preferred', 
                                         value: state.songs![i].id,
                                         checked: state.selected === i,
-                                        onchange: () => {
-                                            state.selected = i
-                                        }
+                                        onchange: () => state.selected = i
                                     }),
                                     "This one's better",
                                     m('img', {src: 'static/images/done_white_24dp.svg'})
@@ -112,12 +108,10 @@ const Form: Component = {
                                 m('label',
                                     m('input', {
                                         type: 'checkbox',
-                                        onchange: e => {
-                                            if (e.target.checked)
-                                                state.improve.push(area[0])
-                                            else
-                                                state.improve = state.improve.filter(a => a !== area[0])
-                                        }
+                                        onchange: e =>
+                                            e.target.checked
+                                                ? state.improve.push(area[0])
+                                                : state.improve = state.improve.filter(a => a !== area[0])
                                     }),
                                     area[1]
                                 )
