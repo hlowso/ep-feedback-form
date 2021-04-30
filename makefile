@@ -18,6 +18,6 @@ test:
 	@ts-node ./test.ts
 
 data.csv: feedback.csv
-	@cat feedback.csv | tr '\n' ',' | gsed 's/ep-feedback.netlify/\n/g' | awk -f select.awk > $@
+	@cat feedback.csv | tr '\n' ',' | gsed 's/ep-feedback.netlify/\n/g' | awk -f select.awk | sort -u > $@
 
 .PHONY: watch build rank test
