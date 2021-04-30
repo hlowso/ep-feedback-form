@@ -13,6 +13,10 @@ export const rank = (songs: Song[], data: Result[]) => {
     for (const result of data) {
         const aIdx = songs.findIndex(s => s.id === result.pairing[0])
         const bIdx = songs.findIndex(s => s.id === result.pairing[1])
+        // if (!songs[aIdx])
+        //     console.log('woops', result.pairing[0])
+        // if (!songs[bIdx])
+        //     console.log('woops', result.pairing[1])
         const Ea = E(songs[aIdx].score, songs[bIdx].score)
         const Eb = E(songs[bIdx].score, songs[aIdx].score)
         songs[aIdx].score = R(songs[aIdx].score, S(result.pairing[0], result.preferred), Ea)

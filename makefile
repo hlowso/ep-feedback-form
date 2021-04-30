@@ -11,10 +11,13 @@ watch:
 
 build: build.js index.html
 
-rank:
+rank: data.csv
 	@ts-node src/index.ts
 
 test:
 	@ts-node ./test.ts
+
+data.csv: feedback.csv
+	@cat feedback.csv | tr '\n' ',' | gsed 's/ep-feedback.netlify/\n/g' | awk -f select.awk > $@
 
 .PHONY: watch build rank test
