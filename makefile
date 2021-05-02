@@ -23,4 +23,7 @@ data.csv: feedback.csv
 emails: data.csv
 	@awk -F ';' '{ print $$4 }' data.csv | sed '/^$$/d'
 
+uvu:
+	@ts-node src/tests/*.ts
+
 .PHONY: watch build rank test emails

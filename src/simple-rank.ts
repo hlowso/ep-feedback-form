@@ -21,7 +21,7 @@ const scoreA = (songId: number, data: Result[]) => {
     return round(counts.numerator / counts.denominator)
 }
 
-const scoreB = (songId: number, data: Result[]) => {
+export const scoreB = (songId: number, data: Result[]) => {
     const stats = data.reduce((f, result) => {
         if (result.pairing.includes(songId)) {
             switch (result.preferred) {
@@ -43,7 +43,7 @@ const scoreB = (songId: number, data: Result[]) => {
     }
 }
 
-const weight = (data: Result[]) => {
+export const weight = (data: Result[], maxWeight = MAX_WEIGHT) => {
     const byIp = data.reduce((people, result) => {
         !people[result.ip]
             ? people[result.ip] = [result]
@@ -54,9 +54,9 @@ const weight = (data: Result[]) => {
     Object.values(byIp).forEach((results) => {
         results.forEach(result => {
             result.weight =
-                results.length < MAX_WEIGHT
+                results.length < maxWeight
                     ? 1
-                    : MAX_WEIGHT / results.length
+                    : maxWeight / results.length
         })
     })
 }
