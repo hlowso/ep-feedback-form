@@ -20,4 +20,7 @@ test:
 data.csv: feedback.csv
 	@cat feedback.csv | tr '\n' ',' | gsed 's/ep-feedback.netlify/\n/g' | awk -f select.awk | sort -u > $@
 
-.PHONY: watch build rank test
+emails: data.csv
+	@awk -F ';' '{ print $$4 }' data.csv | sed '/^$$/d'
+
+.PHONY: watch build rank test emails
