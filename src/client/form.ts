@@ -134,10 +134,11 @@ const Form: Component = {
                     type: 'submit',
                     value: 'Send',
                     disabled: !state.human || state.selected === undefined,
-                    onclick: () => {
+                    onclick: e => {
                         const entry = [state.songs![0].id, state.songs![1].id]
                         history.push(entry.sort((a, b)=>b-a))
                         localStorage.setItem('history', JSON.stringify(history))
+                        e.preventDefault()
                     }
                 })
             )
